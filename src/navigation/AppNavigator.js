@@ -37,7 +37,7 @@ function MainTabs() {
     >
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Beranda' }} />
       <Tab.Screen name="Explore" component={ExploreScreen} options={{ title: 'Cari Resep' }} />
-      <Tab.Screen name="Favorit" component={FavoritesScreen} options={{ title: 'Favorit Saya' }} />
+      <Tab.Screen name="Favorit" component={FavoriteScreen} options={{ title: 'Favorit Saya' }} />
       <Tab.Screen name="Profil" component={ProfileScreen} />
     </Tab.Navigator>
   );
