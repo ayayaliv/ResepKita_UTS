@@ -8,7 +8,7 @@ import WelcomeScreen from '../screens/WelcomeScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ExploreScreen from '../screens/ExploreScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import ProfileScreen from '../screens/ProfileScreen'; 
 import RecipeDetailScreen from '../screens/RecipeDetailScreen';
 import { colors } from '../theme';
 
@@ -38,7 +38,7 @@ function MainTabs() {
       <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'Beranda' }} />
       <Tab.Screen name="Explore" component={ExploreScreen} options={{ title: 'Cari Resep' }} />
       <Tab.Screen name="Favorit" component={FavoritesScreen} options={{ title: 'Favorit Saya' }} />
-      <Tab.Screen name="Profil" component={ProfileScreen} />
+      <Tab.Screen name="Profil" component={ProfileScreen} options={{ title: 'Profil Saya' }} />
     </Tab.Navigator>
   );
 }
