@@ -43,7 +43,6 @@ function MainTabs() {
   );
 }
 
-// Stack Navigation
 export default function AppNavigator() {
   return (
     <NavigationContainer>
