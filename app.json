@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "ResepKita",
-    "slug": "ResepKita",
+    "slug": "resepkita",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
