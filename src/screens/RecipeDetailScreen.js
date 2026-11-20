@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFavorites } from '../context/FavoritesContext';
 import { formatRupiah } from '../data/recipes';
@@ -12,8 +12,8 @@ export default function RecipeDetailScreen({ route }) {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ padding: 16 }}>
+      <Image source={recipe.image} style={styles.photo} />
       <View style={styles.header}>
-        <Text style={styles.emoji}>{recipe.emoji}</Text>
         <Text style={styles.name}>{recipe.name}</Text>
         <Text style={styles.meta}>
           ⏱ {recipe.time} menit  •  {formatRupiah(recipe.cost)}  •  {recipe.level}
@@ -27,9 +27,9 @@ export default function RecipeDetailScreen({ route }) {
         <Ionicons
           name={fav ? 'heart' : 'heart-outline'}
           size={20}
-          color={fav ? '#fff' : colors.primary}
+          color={fav ? colors.white : colors.primary}
         />
-        <Text style={[styles.favText, fav && { color: '#fff' }]}>
+        <Text style={[styles.favText, fav && { color: colors.white }]}>
           {fav ? 'Hapus dari Favorit' : 'Simpan ke Favorit'}
         </Text>
       </TouchableOpacity>
@@ -49,9 +49,9 @@ export default function RecipeDetailScreen({ route }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
-  header: { alignItems: 'center', marginBottom: 16 },
-  emoji: { fontSize: 80 },
-  name: { fontSize: 24, fontWeight: '800', color: colors.text, marginTop: 8 },
+  photo: { width: '100%', height: 220, borderRadius: 16, backgroundColor: colors.card },
+  header: { alignItems: 'center', marginVertical: 16 },
+  name: { fontSize: 24, fontWeight: '800', color: colors.text, textAlign: 'center' },
   meta: { color: colors.muted, marginTop: 4 },
   favButton: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
