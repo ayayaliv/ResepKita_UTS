@@ -3,15 +3,13 @@ import { View, Text, Image, TouchableOpacity, Alert, ScrollView, StyleSheet } fr
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../context/AuthContext';
-import { useFavorites } from '../context/FavoritesContext';
 import { colors } from '../theme';
 
 export default function ProfileScreen() {
   const { user, updatePhoto, logout } = useAuth();
-  const { favorites } = useFavorites();
   const [photoError, setPhotoError] = useState(false);
 
-  if (!user) return null; // sesaat setelah keluar
+  if (!user) return null;
 
   const pickerOptions = {
     mediaTypes: ['images'],
@@ -58,6 +56,9 @@ export default function ProfileScreen() {
   };
 
   const showPhoto = user.photo && !photoError;
+  const since = user.loginAt
+    ? new Date(user.loginAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })
+    : '-';
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -66,7 +67,7 @@ export default function ProfileScreen() {
           <Image source={{ uri: user.photo }} style={styles.avatar} onError={() => setPhotoError(true)} />
         ) : (
           <View style={[styles.avatar, styles.avatarEmpty]}>
-            <Text style={styles.initial}>{user.name.charAt(0).toUpperCase()}</Text>
+            <Text style={styles.initial}>{user.username.charAt(0).toUpperCase()}</Text>
           </View>
         )}
         <View style={styles.cameraBadge}>
@@ -75,12 +76,19 @@ export default function ProfileScreen() {
       </TouchableOpacity>
       <Text style={styles.hint}>Ketuk foto untuk mengganti</Text>
 
-      <Text style={styles.name}>{user.name}</Text>
-      <Text style={styles.nim}>NIM {user.nim}</Text>
+      <Text style={styles.name}>{user.username}</Text>
+      <Text style={styles.role}>Pengguna ResepKita</Text>
 
       <View style={styles.card}>
-        <Text style={styles.label}>Resep favorit tersimpan</Text>
-        <Text style={styles.value}>{favorites.length}</Text>
+        <Text style={styles.label}>Info Akun</Text>
+        <View style={styles.infoRow}>
+          <Text style={styles.infoKey}>Username</Text>
+          <Text style={styles.infoValue}>{user.username}</Text>
+        </View>
+        <View style={styles.infoRow}>
+          <Text style={styles.infoKey}>Masuk sejak</Text>
+          <Text style={styles.infoValue}>{since}</Text>
+        </View>
       </View>
 
       <View style={styles.card}>
@@ -110,10 +118,12 @@ const styles = StyleSheet.create({
   },
   hint: { color: colors.muted, fontSize: 12, marginTop: 8 },
   name: { fontSize: 24, fontWeight: '800', color: colors.text, marginTop: 12 },
-  nim: { color: colors.muted, marginBottom: 20 },
+  role: { color: colors.muted, marginBottom: 20 },
   card: { width: '100%', backgroundColor: colors.card, borderRadius: 16, padding: 16, marginBottom: 12 },
-  label: { color: colors.muted, marginBottom: 6 },
-  value: { fontSize: 32, fontWeight: '800', color: colors.accent },
+  label: { color: colors.muted, marginBottom: 8 },
+  infoRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 6 },
+  infoKey: { color: colors.muted, fontSize: 15 },
+  infoValue: { color: colors.text, fontSize: 15, fontWeight: '700' },
   teamText: { fontSize: 15, fontWeight: '600', color: colors.text, marginTop: 2 },
   logout: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%',
