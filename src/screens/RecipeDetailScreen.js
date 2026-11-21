@@ -2,11 +2,10 @@ import React from 'react';
 import { ScrollView, View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useFavorites } from '../context/FavoritesContext';
-import { formatRupiah } from '../data/recipes';
 import { colors } from '../theme';
 
 export default function RecipeDetailScreen({ route }) {
-  const { recipe } = route.params; 
+  const { recipe } = route.params;
   const { isFavorite, toggleFavorite } = useFavorites();
   const fav = isFavorite(recipe.id);
 
@@ -16,7 +15,7 @@ export default function RecipeDetailScreen({ route }) {
       <View style={styles.header}>
         <Text style={styles.name}>{recipe.name}</Text>
         <Text style={styles.meta}>
-          ⏱ {recipe.time} menit  •  {formatRupiah(recipe.cost)}  •  {recipe.level}
+          ⏱ {recipe.time} menit  •  {recipe.level}  •  {recipe.category}
         </Text>
       </View>
 

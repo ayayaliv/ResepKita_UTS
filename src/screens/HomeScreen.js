@@ -7,7 +7,6 @@ import { colors } from '../theme';
 
 export default function HomeScreen({ navigation }) {
   const { user } = useAuth();
-  const firstName = user ? user.name.split(' ')[0] : '';
 
   return (
     <View style={styles.container}>
@@ -17,12 +16,12 @@ export default function HomeScreen({ navigation }) {
         contentContainerStyle={{ padding: 16 }}
         ListHeaderComponent={
           <View style={styles.banner}>
-            <Text style={styles.bannerTitle}>Halo, {firstName}! 👋</Text>
+            <Text style={styles.bannerTitle}>Halo, {user ? user.username : ''}! 👋</Text>
             <Text style={styles.bannerText}>
-              Mau masak apa hari ini? Semua resep di bawah ini di bawah Rp 15.000.
+              Resep simpel yang gampang dibuat, tanpa bahan susah dicari dan tanpa ribet.
             </Text>
             <View style={styles.pill}>
-              <Text style={styles.pillText}>💰 Hemat • Mudah • Cepat</Text>
+              <Text style={styles.pillText}>✨ Mudah • Cepat • Tanpa Ribet</Text>
             </View>
           </View>
         }

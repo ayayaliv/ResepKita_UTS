@@ -9,7 +9,7 @@ export default function WelcomeScreen({ navigation }) {
       <Text style={styles.emoji}>🍳</Text>
       <Text style={styles.title}>ResepKita</Text>
       <Text style={styles.subtitle}>
-        Masak enak, murah, dan gampang. Cukup bahan seadanya!
+        Resep mudah dan tidak ribet, cukup dengan bahan seadanya!
       </Text>
       <TouchableOpacity
         style={styles.button}
