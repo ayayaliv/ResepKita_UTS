@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView,
+  Text, TextInput, TouchableOpacity, KeyboardAvoidingView,
   Platform, ScrollView, StyleSheet,
 } from 'react-native';
 import { useAuth } from '../context/AuthContext';
@@ -8,18 +8,17 @@ import { colors } from '../theme';
 
 export default function LoginScreen() {
   const { login } = useAuth();
-  const [name, setName] = useState('');
-  const [nim, setNim] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleLogin = () => {
-    if (!name.trim() || !nim.trim() || password.length < 4) {
-      setError('Nama dan NIM wajib diisi, kata sandi minimal 4 karakter.');
+    if (!username.trim() || password.length < 4) {
+      setError('Username wajib diisi, kata sandi minimal 4 karakter.');
       return;
     }
     setError('');
-    login(name.trim(), nim.trim()); 
+    login(username.trim());
   };
 
   return (
@@ -30,23 +29,16 @@ export default function LoginScreen() {
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
         <Text style={styles.emoji}>🍳</Text>
         <Text style={styles.title}>Masuk ke ResepKita</Text>
-        <Text style={styles.subtitle}>Isi data dirimu untuk mulai memasak</Text>
+        <Text style={styles.subtitle}>Masukkan username untuk mulai memasak</Text>
 
-        <Text style={styles.label}>Nama Lengkap</Text>
+        <Text style={styles.label}>Username</Text>
         <TextInput
           style={styles.input}
-          placeholder="Contoh: Cahya Putri"
-          value={name}
-          onChangeText={setName}
-        />
-
-        <Text style={styles.label}>NIM</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Contoh: 240040001"
-          keyboardType="numeric"
-          value={nim}
-          onChangeText={setNim}
+          placeholder="Contoh: cahya"
+          autoCapitalize="none"
+          autoCorrect={false}
+          value={username}
+          onChangeText={setUsername}
         />
 
         <Text style={styles.label}>Kata Sandi</Text>

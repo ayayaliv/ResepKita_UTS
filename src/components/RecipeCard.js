@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { colors } from '../theme';
-import { formatRupiah } from '../data/recipes';
 
 export default function RecipeCard({ recipe, onPress }) {
   return (
@@ -17,7 +16,7 @@ export default function RecipeCard({ recipe, onPress }) {
         <Text style={styles.desc} numberOfLines={1}>{recipe.desc}</Text>
         <View style={styles.row}>
           <Text style={styles.tag}>⏱ {recipe.time} mnt</Text>
-          <Text style={[styles.tag, styles.cost]}>{formatRupiah(recipe.cost)}</Text>
+          <Text style={[styles.tag, styles.category]}>{recipe.category}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -39,5 +38,5 @@ const styles = StyleSheet.create({
   desc: { fontSize: 12, color: colors.muted, marginVertical: 2 },
   row: { flexDirection: 'row', marginTop: 4 },
   tag: { fontSize: 12, color: colors.muted, marginRight: 12 },
-  cost: { color: colors.accent, fontWeight: '700' },
+  category: { color: colors.accent, fontWeight: '700' },
 });
